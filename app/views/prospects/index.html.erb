@@ -1,2 +1,39 @@
-<h1>Prospects#index</h1>
-<p>Find me in app/views/prospects/index.html.erb</p>
+<div class="container">
+<h1>Prospecto | <%= link_to 'Ingresar nuevo prospecto', new_prospects_path %> </h1>
+<br>
+<br>
+<br>
+<div>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        
+        <th scope="col">Email</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Estatus</th>
+        <th scope="col">Ingresado por</th>
+        <th scope="col">Fecha Ingreso</th>
+        <th scope="col">Conversaciones</th>
+        <th scope="col">Opciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @prospects.each_with_index do |p, i| %>
+    <tr>
+        
+        <td><%=p.email%></td>
+        <td><%=p.full_name%></td>
+        <td><%=p.phone%></td>
+        <td><%=p.status%></td>
+        <td><%=p.user.email%></td>
+        <td><%=p.created_at%></td>
+        <td><%=link_to 'Ver conversaciones', root_path(p)%></td>
+        <td><%=link_to 'Editar', edit_prospects_path(:prospect_id => p.id)%> | <%=link_to 'Eliminar', prospects_path(:prospect_id => p.id), method: :delete, data: { confirm: 'Esta seguro de eliminar el prospecto?' }%></td>
+        
+    </tr>
+    <%end%>
+    </tbody>
+    </table>
+    </div>
+</div>

@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     get 'cancel'
   end
 root to: 'prospects#index'
-  resource :prospects
-
+  resource :prospects do
+    resources :comments
+  end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
